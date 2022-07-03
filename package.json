@@ -6,7 +6,6 @@
   "author": "Gal Schlezinger <gal@spitfire.co.il>",
   "license": "GPLv3",
   "scripts": {
-    "changelog": "./.ci/generate-changelog.sh",
     "version:prepare": "changeset version && ./.ci/prepare-version.js",
     "generate-command-docs": "./.ci/print-command-docs.js"
   },
