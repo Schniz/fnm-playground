@@ -6,7 +6,12 @@ GAL_PROMPT_PREFIX='\e[34m✡ \e[0m'
 
 function type() {
   printf $GAL_PROMPT_PREFIX
-  echo $* | pv -qL $[10+(-2 + RANDOM%5)]
+  text_to_write="$*"
+  for (( i=0; i<${#text_to_write}; i++ )); do
+    printf "${text_to_write:$i:1}"
+    sleep 0.0$[(10+(-2+RANDOM%5))/2]
+  done
+  printf "\n"
 }
 
 type 'eval "$(fnm env)"'
