@@ -44,11 +44,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pnpm-store-
 
-    - name: Install script dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y asciinema
-
     - name: Install Node.js project dependencies
       run: pnpm install
 
