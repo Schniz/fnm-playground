@@ -58,3 +58,4 @@ jobs:
         version: "pnpm version:prepare"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TERM: xterm
