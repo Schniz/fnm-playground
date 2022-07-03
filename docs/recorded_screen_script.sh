@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 set -e
 
@@ -9,12 +9,7 @@ GAL_PROMPT_PREFIX="\e[34m✡\e[m  "
 function type() {
   printf $GAL_PROMPT_PREFIX
   echo -n " "
-  text_to_write="$*"
-  for (( i=0; i<${#text_to_write}; i++ )); do
-    printf "${text_to_write:$i:1}"
-    sleep 0.0$[(10+(-2+RANDOM%5))/2]
-  done
-  printf "\n"
+  echo $* | node .ci/type-letters.js
 }
 
 type 'eval "$(fnm env)"'
