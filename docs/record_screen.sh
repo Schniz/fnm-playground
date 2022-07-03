@@ -19,6 +19,14 @@ RECORDING_PATH=$DIRECTORY/screen_recording
 
 (rm -rf "$RECORDING_PATH" &> /dev/null || true)
 
-asciinema rec -c "$DIRECTORY/recorded_screen_script.sh" "$RECORDING_PATH" --cols 80 --rows 24
+docker run --rm -it \
+  -v "$PWD:$PWD" \
+  -v "$TEMP_DIR:$TEMP_DIR" \
+  --workdir "$PWD" \
+  -e "PATH_ADDITION=$TEMP_DIR" \
+  -e "FNM_DIR=$FNM_DIR" \
+  docker.io/asciinema/asciinema \
+  rec -c "bash $PWD/$DIRECTORY/recorded_screen_script.sh" "$RECORDING_PATH" --cols 80 --rows 24
+
 sed "s@$TEMP_DIR@~@g" "$RECORDING_PATH" \
   | pnpm svg-term --window --out "$DIRECTORY/fnm.svg" --height=17 --width=70

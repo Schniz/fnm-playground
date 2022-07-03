@@ -2,10 +2,13 @@
 
 set -e
 
-GAL_PROMPT_PREFIX='\e[34m✡ \e[0m'
+export PATH=$PATH_ADDITION:$PATH
+
+GAL_PROMPT_PREFIX="\e[34m✡\e[m  "
 
 function type() {
   printf $GAL_PROMPT_PREFIX
+  echo -n " "
   text_to_write="$*"
   for (( i=0; i<${#text_to_write}; i++ )); do
     printf "${text_to_write:$i:1}"
@@ -15,7 +18,7 @@ function type() {
 }
 
 type 'eval "$(fnm env)"'
-eval `fnm env`
+eval "$(fnm env)"
 
 type 'fnm --version'
 fnm --version
