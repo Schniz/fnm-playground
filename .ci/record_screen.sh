@@ -20,9 +20,10 @@ RECORDING_PATH=$DIRECTORY/screen_recording
 
 (rm -rf "$RECORDING_PATH" &> /dev/null || true)
 
-pnpm svg-term \
-  --window \
-  --out "$DIRECTORY/fnm.svg" \
-  --height=17 \
-  --width=70 \
-  --command "bash $DIRECTORY/recorded_screen_script.sh | sed s@$TEMP_DIR@~@g"
+asciinema rec -c "$DIRECTORY/recorded_screen_script.sh" "$RECORDING_PATH"
+sed "s@$TEMP_DIR@~@g" "$RECORDING_PATH" | \
+  svg-term \
+    --window \
+    --out "$DIRECTORY/fnm.svg" \
+    --height=17 \
+    --width=70

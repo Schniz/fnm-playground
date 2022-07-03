@@ -19,7 +19,7 @@ const command = cmd.command({
     updateCargoToml(await getPackageVersion());
     exec("cargo build --release");
     exec("yarn generate-command-docs --binary-path=./target/release/fnm");
-    exec("./docs/record_screen.sh");
+    exec("./.ci/record_screen.sh");
   },
 });
 
