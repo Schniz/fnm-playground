@@ -3,7 +3,8 @@
 DIRECTORY="$(dirname "$0")"
 
 function setup_binary() {
-  TEMP_DIR="$(mktemp -d -t fnm)"
+  TEMP_DIR="/tmp/fnm-$(date '+%s')"
+  mkdir "$TEMP_DIR"
   cp ./target/release/fnm "$TEMP_DIR/fnm"
   export PATH=$TEMP_DIR:$PATH
   export FNM_DIR=$TEMP_DIR/.fnm
